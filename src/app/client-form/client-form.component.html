@@ -27,6 +27,5 @@
                 [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched)}">
         </div>
         <button type="submit" class="btn btn-primary w-100" [disabled]="!myForm.form.valid" (click)="save()">{{buttonText}}</button>
-        <button type="submit" class="btn btn-primary w-100" (click)="save()">{{buttonText}}</button>
     </form>
 </div>
