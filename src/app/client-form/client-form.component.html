@@ -1,0 +1,32 @@
+<div class="container">
+    <h1 class="mt-5 text-center">{{ title }}</h1>
+    <div class="alert alert-danger mt-5" *ngIf="errors.length > 0">
+        Los siguientes campos no son correctos:
+        <ul>
+            <li *ngFor="let error of errors">{{ error }}</li>
+        </ul>
+        Por favor, revise los datos introducidos y vuelva a intentarlo.
+    </div>
+    <form class="mt-5" #myForm="ngForm">
+        <div class="mb-3">
+            <label for="firstNameInput" class="form-label">Nombre</label>
+            <input type="text" name="firstName" id="firstNameInput" class="form-control" required maxlength="50"
+                [(ngModel)]="client.firstName" #firstName="ngModel"
+                [ngClass]="{'is-invalid': firstName.invalid && (firstName.dirty || firstName.touched)}">
+        </div>
+        <div class="mb-3">
+            <label for="lastNameInput" class="form-label">Apellidos</label>
+            <input type="text" name="lastName" id="lastNameInput" class="form-control" required maxlength="50"
+                [(ngModel)]="client.lastName" #lastName="ngModel"
+                [ngClass]="{'is-invalid': lastName.invalid && (lastName.dirty || lastName.touched)}">
+        </div>
+        <div class="mb-4">
+            <label for="emailInput" class="form-label">Dirección de correo electrónico</label>
+            <input type="email" name="email" id="emailInput" class="form-control" required minlength="4" maxlength="50"
+                pattern="^[a-zA-Z0-9._-]+@([a-zA-Z0-9_-]+\.)+[a-zA-Z]{2,}$" [(ngModel)]="client.email" #email="ngModel"
+                [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched)}">
+        </div>
+        <button type="submit" class="btn btn-primary w-100" [disabled]="!myForm.form.valid" (click)="save()">{{buttonText}}</button>
+        <button type="submit" class="btn btn-primary w-100" (click)="save()">{{buttonText}}</button>
+    </form>
+</div>

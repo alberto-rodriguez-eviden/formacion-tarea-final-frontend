@@ -1,0 +1,31 @@
+<div class="container p-5">
+    <h1 class="text-center">Listado de clientes</h1>
+
+    <button class="btn btn-primary mt-5" routerLink="./form">Agregar</button>
+
+    <table class="table table-hover mt-3">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr *ngFor="let client of clientList">
+                <td>{{client.id}}</td>
+                <td>{{client.firstName}}</td>
+                <td>{{client.lastName}}</td>
+                <td>
+                    <a [href]="`mailto:${client.email}`">{{client.email}}</a>
+                </td>
+                <td>
+                    <button class="btn btn-primary me-2" [routerLink]="['./form', client.id]">Editar</button>
+                    <button class="btn btn-danger">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
